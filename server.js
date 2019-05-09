@@ -5,13 +5,15 @@ const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+require('dotenv').config() 
+
 var nodemailer = require('nodemailer');
 
 var transport = {
   host: 'smtp.outlook.com',
   auth: {
-    user: process.env.REACT_APP_EMAIL,
-    pass: process.env.REACT_APP_PASSWORD
+    user: process.env.NODE_EMAIL,
+    pass: process.env.NODE_PASSWORD
   }
 }
 
