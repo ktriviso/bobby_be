@@ -1,0 +1,5 @@
+{
+  "version": 2,
+  "name": "express",
+  "builds": [{ "src": "api/email/index.js", "use": "@now/node" }]
+}
