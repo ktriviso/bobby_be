@@ -1,5 +1,9 @@
 {
   "version": 2,
-  "name": "express",
-  "builds": [{ "src": "api/email/index.js", "use": "@now/node" }]
+  "name": "bobby-be",
+  "builds": [{ "src": "api/email/index.js", "use": "@now/node" }],
+  "env": {
+    "GMAIL_USER": "admin@tillagetavern.com",
+    "GMAIL_PW": " tillageAdmin"
+  }
 }

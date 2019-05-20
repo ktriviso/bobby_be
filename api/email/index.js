@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
@@ -8,42 +10,17 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-require('dotenv').config()
-
 const nodemailer = require('nodemailer')
 
-// const transport = {
-// host: 'smtp.outlook.com',
-//   auth: {
-//     user: 'info@tillagetavern.com',
-//     pass: 'tillage2019!'
-//   }
-// }
-
-const transporter = nodemailer.createTransport({
-  // service: 'hotmail',
-  host: 'smtp-mail.outlook.com', // hostname
-  secureConnection: false, // TLS requires secureConnection to be false
-  port: 587, // port for secure SMTP
-  tls: {
-    ciphers: 'SSLv3'
-  },
+const transport = {
+  host: 'smtp.gmail.com',
   auth: {
-    user: 'inquiry@tillagetavern.com',
-    pass: 'tillage2019!'
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_PW
   }
-})
-// inquiry@tillagetavern.com
-// test@tillagetavern.com
-// const transport = {
-//   host: 'smtp.gmail.com',
-//   auth: {
-//     user: 'liamhellis@gmail.com',
-//     pass: '102IndiaStreet'
-//   }
-// }
+}
 
-// const transporter = nodemailer.createTransport(transport)
+const transporter = nodemailer.createTransport(transport)
 
 transporter.verify((error, success) => {
   console.log('TCL: success', success)
@@ -59,7 +36,7 @@ app.post('/api/email', (req, res) => {
 
   const mail = {
     from: email,
-    to: 'info@tillagetavern.com',
+    to: process.env.GMAIL_USER,
     subject: 'New message from your website',
     text: `You have received a new sign up from ${email}.`
   }
