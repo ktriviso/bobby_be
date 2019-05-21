@@ -3,7 +3,7 @@
   "name": "bobby-be",
   "builds": [{ "src": "api/email/index.js", "use": "@now/node" }],
   "env": {
-    "GMAIL_USER": "admin@tillagetavern.com",
-    "GMAIL_PW": " tillageAdmin"
+    "GMAIL_USER": "@bobby-user",
+    "GMAIL_PW": "@bobby-pw"
   }
 }
